@@ -1,0 +1,9 @@
+{
+    "name": "Home",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "dojo": "1.10.0",
+        "util": "dojo-util#1.10.0"
+    }
+}

@@ -1,0 +1,37 @@
+$size-w: 440px;
+$size-h: 300px;
+
+.home {
+    .recoms {
+        width: $size-w;
+    }
+    .profile-panel {
+        width: $size-w;
+        height: $size-h;
+    }
+
+    .article {
+        padding: 5px;
+        width: $size-w;
+    }
+
+    .article:first-child {
+        width: 880px;
+    }
+
+    // .blog-article {
+    //     width: $blog_size_w;
+    // }
+
+    // .album-article{
+    //     width: $album_size_w
+    // }
+
+    // .game-article {
+    //     width: $game_size_w
+    // }
+
+    // .app-article {
+    //     width: $app_size_w
+    // }
+}

@@ -1,0 +1,103 @@
+{
+    "vendor": "utilhub.com",
+    "feature": "home",
+    "name": "Home",
+    "version": "1.0.0",
+    "description": "",
+
+    "activator": "Activator",
+
+    "dependencies": {
+        "services": [{
+            "alias": "tweet_srv",
+            "serviceType": "Server",
+            "symbolicName": "system:utilhub.com:tweet_srv"
+        }, {
+            "alias": "social_srv",
+            "serviceType": "Server",
+            "symbolicName": "system:utilhub.com:social_srv"
+        }, {
+            "alias": "topic_srv",
+            "serviceType": "Server",
+            "symbolicName": "system:utilhub.com:topic_srv"
+        }, {
+            "alias": "album_srv",
+            "serviceType": "Server",
+            "symbolicName": "system:utilhub.com:album_srv"
+        }, {
+            "alias": "blog_srv",
+            "serviceType": "Server",
+            "symbolicName": "system:utilhub.com:blog_srv"
+        }, {
+            "alias": "user_srv",
+            "serviceType": "Server",
+            "symbolicName": "system:utilhub.com:user_srv"
+        }, {
+            "alias": "tweet_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:tweet_ctrl"
+        }, {
+            "alias": "article_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:article_ctrl"
+        }, {
+            "alias": "profile_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:profile_ctrl"
+        }, {
+            "alias": "iPopPage_lib",
+            "serviceType": "Library",
+            "symbolicName": "system:utilhub.com:iPopPage_lib"
+        }, {
+            "alias": "iRecommendPanel_lib",
+            "serviceType": "Library",
+            "symbolicName": "system:utilhub.com:iRecommendPanel_lib"
+        }, {
+            "alias": "reshare_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:reshare_ctrl"
+        }, {
+            "alias": "topNavbar_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:topNavbar_ctrl"
+        }, {
+            "alias": "iCropperDialog_lib",
+            "serviceType": "Library",
+            "symbolicName": "system:utilhub.com:iCropperDialog_lib"
+        }, {
+            "alias": "masonry_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:masonry_ctrl"
+        }],
+        "extraCssFiles": [
+            "resources/stylesheets/app.css"
+        ]
+    },
+
+    "exports": {
+        "modules": [
+            "App"
+        ],
+        "services": [{
+            "serviceType": "App",
+            "category": "system",
+            "name": "home:src",
+            "classModule": "App",
+            "initParams": {
+                "title": "Home"
+            }
+        }]
+    },
+
+    "licenses": [{
+        "type": "Commercial",
+        "url": "http://www.hudaokeji.com/license101"
+    }, {
+        "type": "OEM",
+        "url": "http://www.hudaokeji.com/license201"
+    }],
+
+    "bugs": "http://bugs.utilhub.com/",
+    "keywords": ["ihudao", "community", "sns"],
+    "homepage": "http://www.utilhub.com"
+}
