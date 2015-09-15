@@ -15,14 +15,14 @@ define([
     "qscript/lang/Class",
     "qface/controls/ITemplated",
     "utilhub/ItemsControl",
-    "bundle!dependencies/services/iRecommendPanel_lib#module",
+    "./IRecommend",
     "./ITweet"
 ], function(on, mouse, topic, domClass, domStyle, domConstruct, array, nlsApp, template,
     socialSrv, tweetSrv, ProfileCtrl, Timeline, Class, ITemplated, ItemsControl,
-    recommendPanelLib, ITweet) {
+    IRecommend, ITweet) {
     var All = Class.declare({
         "-parent-": ItemsControl,
-        "-interfaces-": [ITemplated, ITweet].concat(recommendPanelLib.all),
+        "-interfaces-": [ITemplated, ITweet].concat(IRecommend.all),
         "-protected-": {
             "-fields-": {
                 nls: nlsApp,

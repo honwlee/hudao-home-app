@@ -41,6 +41,10 @@
             "serviceType": "Control",
             "symbolicName": "system:utilhub.com:article_ctrl"
         }, {
+            "alias": "recommendPanel_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:recommendPanel_ctrl"
+        }, {
             "alias": "profile_ctrl",
             "serviceType": "Control",
             "symbolicName": "system:utilhub.com:profile_ctrl"
