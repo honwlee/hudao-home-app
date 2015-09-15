@@ -153,7 +153,22 @@ define([
 
             },
             "-methods-": {
+                prepended: function(items) {
+                    this.masonry.prepended(items);
+                },
 
+                addItem: function(item) {
+                    this.placeItem(this.initItem(item).domNode);
+                },
+
+                initItemWithClass: function(obj, opts) {
+                    return this.initPageItemDom(obj, 0, opts);
+                },
+                placeItem: function(node, position) {
+                    position = position || "first";
+                    domConstruct.place(node, this.paginate.pageCnt, position);
+                    position === "first" ? this.prepended(node) : this.appended(node);
+                }
             }
         },
         "-constructor-": {
