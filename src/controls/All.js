@@ -16,7 +16,7 @@ define([
     "qface/controls/ITemplated",
     "utilhub/ItemsControl",
     "bundle!dependencies/services/iRecommendPanel_lib#module",
-    "udesktop/comctrls/ITweet"
+    "./ITweet"
 ], function(on, mouse, topic, domClass, domStyle, domConstruct, array, nlsApp, template,
     socialSrv, tweetSrv, ProfileCtrl, Timeline, Class, ITemplated, ItemsControl,
     recommendPanelLib, ITweet) {

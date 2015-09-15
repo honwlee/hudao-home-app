@@ -12,7 +12,7 @@ define([
     "qscript/lang/String",
     "qscript/lang/Class",
     "bundle!dependencies/services/blog_srv",
-    "bundle!dependencies/services/masonry_ctrl",
+    "bundle!dependencies/services/masonry_ctrl"
 ], function(on, Item, PostItem, GameItem, AlbumItem, AppItem, Profile,
     RecommendTopics, RecommendGroups, RecommendPerson, qString, Class, blogSrv, MasonryCtrl) {
     return Class.declare({
