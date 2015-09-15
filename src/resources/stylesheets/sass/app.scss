@@ -34,4 +34,16 @@ $size-h: 300px;
     // .app-article {
     //     width: $app_size_w
     // }
+     .article-opts-list .link-item >a{
+            padding: 0;
+     }
+    .comment-item{
+        // width: 80px;
+        i,.num{
+            display: inline-block;
+        }
+    }
+    .post-actions{
+        display: inline-block;
+    }
 }

@@ -16,3 +16,15 @@
 .home .article:first-child {
   width: 880px;
 }
+/* line 37, sass/app.scss */
+.home .article-opts-list .link-item > a {
+  padding: 0;
+}
+/* line 42, sass/app.scss */
+.home .comment-item i, .home .comment-item .num {
+  display: inline-block;
+}
+/* line 46, sass/app.scss */
+.home .post-actions {
+  display: inline-block;
+}

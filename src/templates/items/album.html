@@ -37,17 +37,6 @@
                     <span class="num" data-dojo-attach-point="reshareCountNode" >${article.reshareCount}</span>
                 </a>
             </li>
-            <li class="link-item withripple" data-dojo-attach-point="commentLinkNode"  title="${nls.comment}">
-                <a>
-                    <i class="${fontAwesome.comment}"></i>
-                    <span class="num" data-dojo-attach-point="commentCountNode"  >${article.commentCount}</span>
-                </a>
-                <span class="arrow">
-                    <span class="W-arrow-bor">
-                        <i class="s-line1"></i> <em class="s-bg1-br"></em>
-                    </span>
-                </span>
-            </li>
             <li class="link-item last-item withripple" data-dojo-attach-point="likeLinkNode"  title="${nls.like}">
                 <a>
                     <i class="${fontAwesome.thumbUp}"></i>
@@ -55,11 +44,15 @@
                 </a>
             </li>
         </ul>
-        <div class="comments-wrap s-bg1 s-line1 panel-body media  ${hideClass}" data-dojo-attach-point="commentsWrapNode">
-            <div class="media-left post-comment-avatar-wrap">
-                <a><img src="${postAvatar}" class="post-comment-avatar"></a>
-            </div>
+        <div class="media">
+            <li class="media-left link-item withripple" data-dojo-attach-point="commentLinkNode"  title="${nls.comment}">
+                <a>
+                    <i class="${fontAwesome.comment}"></i>
+                    <span class="num" data-dojo-attach-point="commentCountNode"  >${article.commentCount}</span>
+                </a>
+            </li>
             <div class="media-body" data-dojo-attach-point="commentsListNode"></div>
+        </div>
         </div>
     </div>
 </section>

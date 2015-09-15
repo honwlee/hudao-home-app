@@ -26,40 +26,42 @@
         </div>
     </div>
     <div class="article-opts-wrap">
-        <ul class="article-opts-list nav nav-pills nav-justified" data-dojo-attach-point="linksNode">
-            <li class="link-item withripple" data-dojo-attach-point="favouriteLinkNode" title="${nls.favourite}">
+        <ul class="article-opts-list nav nav-pills" data-dojo-attach-point="linksNode">
+            <li class="link-item" data-dojo-attach-point="favouriteLinkNode" title="${nls.favourite}">
                 <a> <i class="${fontAwesome.star}"></i>
                     <span class="num" data-dojo-attach-point="favouriteCountNode">${article.favouriteCount}</span>
                 </a>
             </li>
-            <li class="link-item withripple" data-dojo-attach-point="reshareLinkNode" title="${nls.reshare}">
+            <li class="link-item" data-dojo-attach-point="reshareLinkNode" title="${nls.reshare}">
                 <a> <i class="${fontAwesome.retweet}"></i>
                     <span class="num" data-dojo-attach-point="reshareCountNode">${article.reshareCount}</span>
                 </a>
             </li>
-            <li class="link-item withripple" data-dojo-attach-point="commentLinkNode" title="${nls.comment}">
-                <a>
-                    <i class="${fontAwesome.comment}"></i>
-                    <span class="num" data-dojo-attach-point="commentCountNode">${article.commentCount}</span>
-                </a>
-                <span class="arrow">
-                    <span class="W-arrow-bor">
-                        <i class="s-line1"></i> <em class="s-bg1-br"></em>
-                    </span>
-                </span>
-            </li>
-            <li class="link-item last-item withripple" data-dojo-attach-point="likeLinkNode" title="${nls.like}">
+
+            <li class="link-item last-item" data-dojo-attach-point="likeLinkNode" title="${nls.like}">
                 <a>
                     <i class="${fontAwesome.thumbUp}"></i>
                     <span class="num" data-dojo-attach-point="likeCountNode">${article.likeCount}</span>
                 </a>
             </li>
         </ul>
-        <div class="comments-wrap s-bg1 s-line1 panel-body media  ${hideClass}" data-dojo-attach-point="commentsWrapNode">
-            <div class="media-left post-comment-avatar-wrap">
-                <a><img src="${postAvatar}" class="post-comment-avatar"></a>
+        <div class="media">
+                <li class="media-left link-item comment-item" data-dojo-attach-point="commentLinkNode" title="${nls.comment}">
+                <a>
+                    <i class="${fontAwesome.comment}"></i>
+                    <span class="num" data-dojo-attach-point="commentCountNode">${article.commentCount}</span>
+                </a>
+            </li>
+            <div class="media-body">
+                <div class="header-desc" data-dojo-attach-point="headerDesc"></div>
+                <div class="inset" data-dojo-attach-point="publishNode">
+                    <textarea class="post-input input" placeholder="来说点啥吧？" data-dojo-attach-point="inputNode"></textarea>
+                    <ul class="post-actions list-inline pull-right"><li title="表情"><i class="fa fa-smile-o"></i></li>
+                    <li title="words left" class="">140</li>
+                    <li title="发布" class=" postLi"><a class="btn btn-primary btn-sm disabled">发布</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="media-body" data-dojo-attach-point="commentsListNode"></div>
-        </div>
+         </div>   
     </div>
 </section>
