@@ -19,7 +19,7 @@ define([
             "-fields-": {
                 templateString: template,
                 userId: null,
-                targetId: null,
+                targetId: null
             },
 
             "-methods-": {
@@ -34,20 +34,24 @@ define([
                                 "actionName": "album",
                                 "actionFunction": "initAlbumForm"
                             }
+                        },
+                        initAction = function(actionName) {
+                            var action = actions[actionName],
+                                functionName = action["actionFunction"],
+                                li = domConstruct.create("li", {
+                                    "class": "nav-item"
+                                }, self.actionNode),
+                                a = domConstruct.create("a", {
+                                    innerHTML: action.actionName,
+                                    onclick: function() {
+                                        self[functionName]();
+                                    }
+                                }, li);
                         };
                     for (var actionName in actions) {
-                        var action = actions[actionName],
-                            functionName = action["actionFunction"],
-                            li = domConstruct.create("li", {
-                                "class": "nav-item"
-                            }, self.actionNode),
-                            a = domConstruct.create("a", {
-                                innerHTML: action.actionName,
-                                onclick: function() {
-                                    self[functionName]();
-                                }
-                            }, li);
-                    };
+                        initAction(actionName);
+                    }
+                    self.initPostFrame();
                 },
 
                 initAlbumForm: function() {

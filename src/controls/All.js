@@ -181,7 +181,7 @@ define([
                         },
                         queryOpts: {},
                         newPaginate: true,
-                        perPage: 10
+                        perPage: 20
                     },
                     setter: function(opts) {
                         this._.filterOpts = opts;

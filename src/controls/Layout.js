@@ -14,6 +14,7 @@ define([
     "dojo/i18n!../nls/app",
     "./All",
     "./Mention",
+    // "./Show",
     "./Setting",
     "toastr/toastr",
     "qface/controls/container/BorderContainer"
@@ -40,8 +41,7 @@ define([
                     on(this.popPage, "hide", Function.hitch(this, function() {
                         this.navbar.showPrevPage();
                     }));
-                    this.initNav()
-                    ''
+                    this.initNav();
                     this.bindWebSocket();
                 },
 
@@ -99,8 +99,15 @@ define([
                                 tweetsMemory: this.memory
                             },
                             container: this.centerNode,
-                            callback: "mentionCbj"
+                            callback: "mentionCbk"
                         },
+                        // show: {
+                        //     name: "show",
+                        //     "objClass": Show,
+                        //     hidden: true,
+                        //     container: this.centerNode,
+                        //     callback: "showCbk"
+                        // },
                         setting: {
                             name: this.nls.setting,
                             "objClass": Setting,
@@ -115,9 +122,9 @@ define([
                     };
 
                     this.navbar = TopNavbarCtrl.createInstance({
+                        // this.navbar = new LeftNavbar({
                         navItemsData: this.navPages,
-                        host: this,
-                        region: "top"
+                        host: this
                     });
                     this.navbar.selectItemByKey("all");
                     this.mainNode.addChild(this.navbar);
@@ -160,6 +167,9 @@ define([
                     }
                 },
                 mentionCbk: function(pages, name, args) {
+
+                },
+                showCbk: function(pages, name, args) {
 
                 }
             }
