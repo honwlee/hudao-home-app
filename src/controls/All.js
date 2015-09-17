@@ -122,6 +122,9 @@ define([
                     }).then(function(recommend) {
                         self.list.placeItem(recommend.domNode);
                         var postFrame = new PostFrame();
+                        on(postFrame, "postWord", function(postInstance) {
+                            self.list.placeItem(postInstance.domNode, "first");
+                        });
                         self.list.placeItem(postFrame.domNode, "first");
                     });
                 },

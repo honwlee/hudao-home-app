@@ -11,8 +11,9 @@ define([
     "bundle!dependencies/services/postFrame_ctrl",
     "bundle!dependencies/services/album_srv",
     "../Form",
-    "bundle!dependencies/services/tweet_srv"
-], function(on, topic, domClass, domStyle, domConstruct, ItemsControl, template, ITemplated, Class, PostFrameCtrl, albumSrv, Form, tweetSrv) {
+    "bundle!dependencies/services/tweet_srv",
+    "./Item"
+], function(on, topic, domClass, domStyle, domConstruct, ItemsControl, template, ITemplated, Class, PostFrameCtrl, albumSrv, Form, tweetSrv, Item) {
     return Class.declare({
         "-parent-": ItemsControl,
         "-interfaces-": [ITemplated],
@@ -85,8 +86,9 @@ define([
 
                 postWord: function(content) {
                     var config = {
-                        text: content
-                    };
+                            text: content
+                        },
+                        self = this;
                     var photoIds = this.photoIds || this.postFrame.photoIds;
                     if (photoIds && photoIds.length > 0) config.photos = photoIds;
                     // tweet's target such as group
@@ -97,6 +99,10 @@ define([
                     if (this.sharedWith) config.sharedWith = this.sharedWith;
                     tweetSrv.addTweet(config).then(Function.hitch(this, function(tweet) {
                         this.publishCbk(tweet);
+                        var item = new Item({
+                            itemData: tweet
+                        });
+                        self.onPostWord(item);
                     }));
                 },
                 publishCbk: function(tweet) {
@@ -116,7 +122,8 @@ define([
             },
 
             "-methods-": {
-                onPost: function() {}
+                onPost: function() {},
+                onPostWord: function(postInstance) {}
             }
         },
 
