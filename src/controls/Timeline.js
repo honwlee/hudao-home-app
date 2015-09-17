@@ -98,10 +98,10 @@ define([
                     if (item.targetType == "Ucenter::Post") {
                         article = this._initPostItem(item, index, notiObj);
                     } else if (item.targetType == "Utilhub::WebApp") {
-                        if (item.sharedWith == "app") {
-                            article = this._initAppItem(item, index, notiObj);
-                        } else {
+                        if (item.content && item.content.photos) {
                             article = this._initGameItem(item, index, notiObj)
+                        } else {
+                            article = this._initAppItem(item, index, notiObj);
                         }
                     } else if (item.targetType == "Ubase::Album") {
                         article = this._initAlbumItem(item, index, notiObj);
