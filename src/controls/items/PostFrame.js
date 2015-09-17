@@ -7,31 +7,73 @@ define([
     "utilhub/ItemsControl",
     "dojo/text!../../templates/items/postFrame.html",
     "qface/controls/ITemplated",
-    "qscript/lang/Class"
-], function(on, topic, domClass, domStyle, domConstruct, ItemsControl, template, ITemplated, Class) {
+    "qscript/lang/Class",
+    "bundle!dependencies/services/postFrame_ctrl",
+    "bundle!dependencies/services/album_srv",
+    "../Form"
+], function(on, topic, domClass, domStyle, domConstruct, ItemsControl, template, ITemplated, Class, PostFrameCtrl, albumSrv, Form) {
     return Class.declare({
         "-parent-": ItemsControl,
-        "-interface-": [ITemplated],
+        "-interfaces-": [ITemplated],
         "-protected-": {
             "-fields-": {
                 templateString: template,
                 userId: null,
                 targetId: null,
-                actions: null
             },
 
             "-methods-": {
                 init: function() {
-                    var self = this;
-                    for (var actionName in self.actions) {
-                        var action = self.actions[actionName];
-                        var li = domConstruct.create("li", {
-                            innerHtml: action.name,
-                        }, self.actionNode);
-                        var a = domConstruct.create("a", {
-                            click: action.callback
-                        }, li);
+                    var self = this,
+                        actions = {
+                            postWord: {
+                                "actionName": "word",
+                                "actionFunction": "initPostFrame"
+                            },
+                            album: {
+                                "actionName": "album",
+                                "actionFunction": "initAlbumForm"
+                            }
+                        };
+                    for (var actionName in actions) {
+                        var action = actions[actionName],
+                            functionName = action["actionFunction"],
+                            li = domConstruct.create("li", {
+                                "class": "nav-item"
+                            }, self.actionNode),
+                            a = domConstruct.create("a", {
+                                innerHTML: action.actionName,
+                                onclick: function() {
+                                    self[functionName]();
+                                }
+                            }, li);
                     };
+                },
+
+                initAlbumForm: function() {
+                    domConstruct.empty(this.actionZoneNode);
+                    form = this.form = new Form();
+                    this.actionZoneNode.appendChild(form.domNode);
+                    on(form, "addData", Function.hitch(this, "addAlbum"));
+                },
+
+                addAlbum: function() {
+                    var self = this;
+                    albumSrv.add(data).then(function(cbData) {
+                        self.onPost(cbData);
+                    });
+                },
+
+                initPostFrame: function() {
+                    domConstruct.empty(this.actionZoneNode);
+                    var opts = {
+                            needHeader: false,
+                            needPhotos: true,
+                            needTopic: true,
+                            parentLayout: this.actionZoneNode
+                        },
+                        postFrame = PostFrameCtrl.createInstance(opts);
+                    this.actionZoneNode.appendChild(postFrame.domNode);
                 }
             }
         },
@@ -39,7 +81,9 @@ define([
         "-public-": {
             "-attributes-": {},
 
-            "-methods-": {}
+            "-methods-": {
+                onPost: function() {}
+            }
         },
 
         "-constructor-": {

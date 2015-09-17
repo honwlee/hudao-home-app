@@ -121,18 +121,7 @@ define([
                         })
                     }).then(function(recommend) {
                         self.list.placeItem(recommend.domNode);
-                        var postFrame = new PostFrame({
-                            actions: {
-                                word: {
-                                    name: "word",
-                                    callback: null
-                                },
-                                album: {
-                                    name: "album",
-                                    callback: null
-                                }
-                            }
-                        });
+                        var postFrame = new PostFrame();
                         self.list.placeItem(postFrame.domNode, "first");
                     });
                 },
@@ -206,6 +195,7 @@ define([
                     this.list.filter({});
                     this.list.resize();
                 },
+
                 resize: function(args) {
                     this["super"](args);
                     if (this.list) this.list.resize(args);

@@ -37,6 +37,10 @@
             "serviceType": "Control",
             "symbolicName": "system:utilhub.com:tweet_ctrl"
         }, {
+            "alias": "postFrame_ctrl",
+            "serviceType": "Control",
+            "symbolicName": "system:utilhub.com:postFrame_ctrl"
+        }, {
             "alias": "article_ctrl",
             "serviceType": "Control",
             "symbolicName": "system:utilhub.com:article_ctrl"
