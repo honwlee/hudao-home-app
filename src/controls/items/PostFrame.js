@@ -65,8 +65,10 @@ define([
 
                 addAlbum: function() {
                     var self = this;
-                    albumSrv.add(data).then(function(cbData) {
-                        self.onPost(cbData);
+                    albumSrv.init().then(function() {
+                        albumSrv.add(data).then(function(cbData) {
+                            self.onPost(cbData);
+                        });
                     });
                 },
 
