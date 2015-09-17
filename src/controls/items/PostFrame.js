@@ -10,8 +10,9 @@ define([
     "qscript/lang/Class",
     "bundle!dependencies/services/postFrame_ctrl",
     "bundle!dependencies/services/album_srv",
-    "../Form"
-], function(on, topic, domClass, domStyle, domConstruct, ItemsControl, template, ITemplated, Class, PostFrameCtrl, albumSrv, Form) {
+    "../Form",
+    "bundle!dependencies/services/tweet_srv"
+], function(on, topic, domClass, domStyle, domConstruct, ItemsControl, template, ITemplated, Class, PostFrameCtrl, albumSrv, Form, tweetSrv) {
     return Class.declare({
         "-parent-": ItemsControl,
         "-interfaces-": [ITemplated],
@@ -74,16 +75,45 @@ define([
                             needHeader: false,
                             needPhotos: true,
                             needTopic: true,
-                            parentLayout: this.actionZoneNode
+                            parentLayout: this.domNode
                         },
-                        postFrame = PostFrameCtrl.createInstance(opts);
+                        postFrame = this.postFrame = PostFrameCtrl.createInstance(opts);
+                    on(postFrame, "post", Function.hitch(this, "postWord"));
+
                     this.actionZoneNode.appendChild(postFrame.domNode);
-                }
+                },
+
+                postWord: function(content) {
+                    var config = {
+                        text: content
+                    };
+                    var photoIds = this.photoIds || this.postFrame.photoIds;
+                    if (photoIds && photoIds.length > 0) config.photos = photoIds;
+                    // tweet's target such as group
+                    if (this.targetId) {
+                        config.target_type = this.targetType;
+                        config.target_id = this.targetId;
+                    }
+                    if (this.sharedWith) config.sharedWith = this.sharedWith;
+                    tweetSrv.addTweet(config).then(Function.hitch(this, function(tweet) {
+                        this.publishCbk(tweet);
+                    }));
+                },
+                publishCbk: function(tweet) {
+                    if (this.photoData) this.photoData = null;
+                    this.postFrame.postEnd(tweet);
+                },
             }
         },
 
         "-public-": {
-            "-attributes-": {},
+            "-attributes-": {
+                photoIds: {
+                    setter: function(ids) {
+                        this._.photoIds = ids;
+                    }
+                }
+            },
 
             "-methods-": {
                 onPost: function() {}
