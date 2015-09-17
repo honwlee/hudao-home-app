@@ -15,12 +15,11 @@ define([
     "./All",
     "./Mention",
     "./Setting",
-        "./Post",
     "toastr/toastr",
     "qface/controls/container/BorderContainer"
 ], function(on, topic, domConstruct, domClass, domStyle, Class,
     BaseUi, IPopPageLib, LeftNavbar, TopNavbarCtrl, ReshareCtrl, template, nlsApp, All,
-    Mention, Setting, Post, toastr) {
+    Mention, Setting, toastr) {
     var Layout = Class.declare({
         "-parent-": BaseUi,
         "-interfaces-": [IPopPageLib],
@@ -101,16 +100,6 @@ define([
                             },
                             container: this.centerNode,
                             callback: "mentionCbj"
-                        },
-                        post: {
-                            name: this.nls.post,
-                            "objClass": Post,
-                            iconClass: FontAwesome.writePost,
-                            hidden: false,
-                            opts: {},
-                            container: this.popPage,
-                            isPopPage: true,
-                            callback: "postCbk"
                         },
                         setting: {
                             name: this.nls.setting,

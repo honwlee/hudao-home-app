@@ -1,0 +1,40 @@
+<div class="mod isay isay-disable has-commodity active">
+    <form name="mbform" method="post" action="http://www.douban.com/"><div style="display:none;"><input type="hidden" name="ck" value="6GMO"></div>
+    <ul class="isay-links" data-dojo-attach-point="actionNode">
+      <li class="isay-main active"><a data-action="main" href="javascript:void(0);">说句话</a></li>
+      <li class="isay-pic"><a data-action="pic" href="javascript:void(0);">发照片</a></li>
+      <li class="isay-share">
+        <a data-action="share" href="javascript:void(0);">推荐网页</a>
+      </li>
+        <li class="notes-link"><a href="http://www.douban.com/note/create" title="添加日记">写日记</a></li>
+        <li class="commodity-link">
+            <a data-action="commodity" href="javascript:void(0)" title="发布东西">发布东西</a>
+            <div class="publish-ways" style="display: none;">
+            <div class="share"><a target="_blank" href="http://dongxi.douban.com/show/create">发布东西</a></div>
+            <div class="review"><a target="_blank" href="http://dongxi.douban.com/article/create">写图文评论</a></div>
+            <s class="arr"></s>
+            <s class="arr-inner"></s>
+            </div>
+        </li>
+    </ul>
+    <div class="item">
+      <p class="highlighter mention-highlighter"></p>
+      <p class="highlighter error-highlighter"></p>
+      <label for="isay-cont" style="display: block;">分享生活点滴...</label>
+      <textarea data-minheight="70" tabindex="1" id="isay-cont" rows="1" style="height: 70px;"></textarea>
+    <textarea data-minheight="70" tabindex="-1" id="isay-cont-clone" name="comment" rows="1" class="abs-out" style="height: 0px;"></textarea></div>
+    <div id="isay-act-field" class="isay-act"></div>
+    <div class="btn">
+      <span id="isay-counter"></span>
+      <span class="bn-submit bn-flat"><input id="isay-submit" tabindex="1" type="submit" value="发布" disabled=""></span>
+      <a target="_blank" href="http://www.douban.com/service/bookmarklet" class="lnk-share-tools" onclick="moreurl(this, {from:'index_rec'})">添加网页推荐工具</a>
+    </div>
+  </form>
+  <div class="btn-group">
+    <form charset="utf-8"data-action="pic" action="/j/upload" enctype="multipart/form-data" method="post"><div style="display:none;"><input type="hidden" name="ck" value="6GMO"></div>
+    <input  tabindex="2" autocomplete="off" data-action="pic" name="image" title="可传多张照片" type="file" multiple="" accept="image/jpg,image/jpeg,image/bmp,image/gif,image/png,">
+    </form>
+    <a href="javascript:void(0);" tabindex="-1" data-action="pic" class="ico ico-pic" title="上传照片">照片</a>
+    <a href="javascript:void(0);" tabindex="2" data-action="topic" class="ico ico-topic" title="添加话题">话题</a>
+  </div>
+</div>

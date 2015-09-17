@@ -16,10 +16,11 @@ define([
     "qface/controls/ITemplated",
     "utilhub/ItemsControl",
     "./IRecommend",
-    "./ITweet"
+    "./ITweet",
+    "./items/PostFrame"
 ], function(on, mouse, topic, domClass, domStyle, domConstruct, array, nlsApp, template,
     socialSrv, tweetSrv, ProfileCtrl, Timeline, Class, ITemplated, ItemsControl,
-    IRecommend, ITweet) {
+    IRecommend, ITweet, PostFrame) {
     var All = Class.declare({
         "-parent-": ItemsControl,
         "-interfaces-": [ITemplated, ITweet].concat(IRecommend.all),
@@ -67,7 +68,10 @@ define([
                             filterOpts: this.filterOpts,
                             loadNextFunc: Function.hitch(this, "loadNextPage")
                         });
+
                     self.addChild(self.list);
+
+                    // self.addChild(postFrame);
                 },
 
                 loadNextPage: function() {
@@ -117,6 +121,19 @@ define([
                         })
                     }).then(function(recommend) {
                         self.list.placeItem(recommend.domNode);
+                        var postFrame = new PostFrame({
+                            actions: {
+                                word: {
+                                    name: "word",
+                                    callback: null
+                                },
+                                album: {
+                                    name: "album",
+                                    callback: null
+                                }
+                            }
+                        });
+                        self.list.placeItem(postFrame.domNode, "first");
                     });
                 },
 
