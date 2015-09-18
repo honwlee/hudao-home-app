@@ -23,7 +23,38 @@ define([
         "-public-": {
             "-attributes-": {},
 
-            "-methods-": {}
+            "-methods-": {
+                initPhotoList: function(photos) {
+                    if (!this.photoListNode) return;
+                    domConstruct.empty(this.photoListNode);
+                    if (photos.length > 0) {
+                        domClass.remove(this.photoListNode, "hide");
+                    }
+                    if (photos.length === 1) {
+                        this.addPhotoItem(photos[0], true);
+                    } else {
+                        photos.forEach(function(photo) {
+                            this.addPhotoItem(photo);
+                        }, this);
+                    }
+
+                    $(this.photoListNode).magnificPopup({
+                        delegate: 'li', // the selector for gallery item
+                        type: 'image',
+                        tLoading: 'Loading...',
+                        gallery: {
+                            enabled: true
+                        },
+                        image: {
+                            verticalFit: false
+                        },
+                        zoom: {
+                            enabled: true // By default it's false, so don't forget to enable it
+                        }
+                    });
+                },
+
+            }
         },
 
         "-constructor-": {
