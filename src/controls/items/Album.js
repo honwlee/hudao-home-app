@@ -15,7 +15,8 @@ define([
             "-fields-": {
                 templateString: template,
                 userId: null,
-                targetId: null
+                targetId: null,
+                comments: null
             },
 
             "-methods-": {
@@ -23,6 +24,7 @@ define([
                     var self = this;
                     this.notiObj = null;
                     domClass.add(this.domNode, "album-article");
+                    this.initComments();
                     // topic.publish("desktop/parseTimeAgo", this.domNode);
                     topic.publish("emojify/run", this.contentTextNode);
                     if (this.itemData.liked) domClass.add(this.likeLinkNode, "liked");
@@ -52,6 +54,12 @@ define([
                             });
                         });
                     });
+                },
+                initComments: function() {
+                    if (this.comments.length > 0) {
+                        this.commentContentNode.innerHTML = this.comments[0].text;
+                        this.commentTimeNode.innerHTML = this.comments[0].createdAt;
+                    }
                 },
                 initArticleData: function(itemData) {
                     var items = [];
@@ -106,6 +114,10 @@ define([
         "-constructor-": {
             initialize: function(params, srcNodeRef) {
                 this["super"](params, srcNodeRef);
+                if (params.itemData.comments) {
+                    this.comments = params.itemData.comments;
+                }
+
             }
         },
 

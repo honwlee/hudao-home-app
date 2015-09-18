@@ -50,7 +50,16 @@ define([
                         this.userId;
                         this.targetId;
                     });
+                    this.initComments();
                 },
+
+                initComments: function() {
+                    if (this.comments.length > 0) {
+                        this.commentTimeNode.innerHTML = this.comments[0].createdAt;
+                        this.commentContentNode.innerHTML = this.comments[0].text;
+                    }
+                },
+
                 initArticleData: function(itemData) {
                     var items = [];
                     var addSubs = function(comment) {
@@ -104,6 +113,9 @@ define([
         "-constructor-": {
             initialize: function(params, srcNodeRef) {
                 this["super"](params, srcNodeRef);
+                if (params.itemData.comments) {
+                    this.comments = params.itemData.comments;
+                }
             }
         },
 

@@ -14,7 +14,8 @@ define([
         "-protected-": {
             "-fields-": {
                 baseClass: "timeline-item",
-                templateString: template
+                templateString: template,
+                comments: null
             },
 
             "-methods-": {}
@@ -24,6 +25,64 @@ define([
             "-attributes-": {},
 
             "-methods-": {
+
+                init: function() {
+                    this.initComments();
+                    this.eventsBind();
+                },
+
+                initComments: function() {
+                    if (this.comments.length > 0) {
+                        this.commentContentNode.innerHTML = this.comments[0].text;
+                        this.commentTimeNode.innerHTML = this.comments[0].createdAt;
+                    }
+                },
+                eventsBind: function() {
+                    on(this.likeLinkNode, "click", Function.hitch(this, "like"));
+                    on(this.favouriteLinkNode, "click", Function.hitch(this, "favourite"));
+                    on(this.reshareLinkNode, "click", Function.hitch(this, "reshare"));
+                },
+
+                like: function() {
+                    if (this.itemData.liked) return this.unlike();
+                    this.itemData.liked = true;
+                    likeSrv.like({
+                        target_id: this.itemData.id,
+                        target_type: "Tweet"
+                    }).then(Function.hitch(this, function(retObj) {
+                        // this.itemData.likers.push(this.itemData.userInfo);
+                        // this.initLikedList();
+                        this.itemData.likeCount += 1;
+                        this.sendNotification("like");
+                        this.onLike(this.itemData);
+                    }));
+                },
+
+                reshare: function() {},
+
+                unlike: function() {
+                    if (!this.itemData.liked) return this.like();
+                    this.itemData.liked = false;
+                    likeSrv.unlike({
+                        target_id: this.itemData.id,
+                        target_type: "Tweet"
+                    }).then(Function.hitch(this, function() {
+                        this.itemData.likeCount -= 1;
+                        // this.initLikedList();
+                        this.onUnLike(this.itemData);
+                    }));
+                },
+
+                favourite: function() {
+                    if (this.itemData.favourited) return this.unfavourite();
+                    tweetSrv.favourite(this.itemData.id).then(Function.hitch(this, function() {
+                        this.itemData.favouriteCount += 1;
+                        this.itemData.favourited = true;
+                        // this.itemData.favouriters.push(this.itemData.userInfo);
+                        this.sendNotification("favourite");
+                        this.onFav(this.itemData);
+                    }));
+                },
                 initPhotoList: function(photos) {
                     if (!this.photoListNode) return;
                     domConstruct.empty(this.photoListNode);
@@ -59,7 +118,12 @@ define([
 
         "-constructor-": {
             initialize: function(params, srcNodeRef) {
+                if (params.itemData.comments) {
+                    this.comments = params.itemData.comments;
+                }
+                this.itemData = params.itemData;
                 this["super"](params, srcNodeRef);
+                this.init();
             }
         },
 

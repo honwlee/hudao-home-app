@@ -14,13 +14,15 @@ define([
             "-fields-": {
                 templateString: template,
                 userId: null,
-                targetId: null
+                targetId: null,
+                comments: null
             },
 
             "-methods-": {
                 init: function() {
                     var self = this;
                     this.notiObj = null;
+                    comments = [];
                     domClass.add(this.domNode, "blog-article");
                     // topic.publish("desktop/parseTimeAgo", this.domNode);
                     topic.publish("emojify/run", this.contentTextNode);
@@ -45,6 +47,14 @@ define([
                     if (this.isReshare) {
                         this.initActions();
                         this.dealReshare();
+                    }
+                    this.initComments();
+                },
+
+                initComments: function() {
+                    if (this.comments.length > 0) {
+                        this.commentContentNode.innerHTML = this.comments[0].text;
+                        this.commentTimeNode.innerHTML = this.comments[0].createdAt;
                     }
                 },
 
@@ -134,6 +144,9 @@ define([
         "-constructor-": {
             initialize: function(params, srcNodeRef) {
                 this["super"](params, srcNodeRef);
+                if (params.itemData.comments) {
+                    this.comments = params.itemData.comments;
+                }
             }
         },
 
