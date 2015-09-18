@@ -8,57 +8,69 @@
             </div>
             <div class="media-body" data-dojo-attach-point="itemDetailsNode">
                 <h4 class="media-heading user-info" data-dojo-attach-point="userInfoNode">
-                    <a class="username">${article.username}</a>
+                <a class="username">${article.username}</a>
                 </h4>
-                <p class="article-text" data-dojo-attach-point="contentTextNode"></p>
-                <div class="photos-wrap col-sm-12">
-                    <ul class="list-inline photo-list hide col-sm-6" data-dojo-attach-point="photoListNode"></ul>
-                </div>
-                <div class="reshare-wrap" data-dojo-attach-point="reshareTextNode"></div>
-                <small class="article-time" data-dojo-attach-point="timeNode" datetime="${article.isoTime}">${article.time}</small>
+                <div class="reinfo">
+                    <a class="re-name" style="opacity:.6"><i class="${fontAwesome.retweet}"></i>${article.username}</a>
+                <em class="fa fa-plus"></em></div>
+                <small class="article-time" data-dojo-attach-point="timeNode" datetime="${article.isoTime}">微博--${article.time}</small>
             </div>
-            <div class="actions-wrap hide" data-dojo-attach-point="actionWrapNode">
-                <i class="${fontAwesome.ellipsis}" data-dojo-attach-point="toggleActionsNode"></i>
-                <ul class="list-group shadow-z-1 hide" data-dojo-attach-point="actionListNode">
+            <div class="reshare-wrap" data-dojo-attach-point="reshareTextNode"></div>
+        </div>
+        <div class="actions-wrap hide" data-dojo-attach-point="actionWrapNode">
+            <i class="${fontAwesome.ellipsis}" data-dojo-attach-point="toggleActionsNode"></i>
+            <ul class="list-group shadow-z-1 hide" data-dojo-attach-point="actionListNode">
+            </ul>
+        </div>
+        <div class="media">
+            <p class="article-text" data-dojo-attach-point="contentTextNode"></p>
+            <div class="photos-wrap col-sm-12">
+            <ul class="list-inline photo-list hide col-sm-6" data-dojo-attach-point="photoListNode"></ul>
+        </div>
+        <div class="media">
+            <a class="" data-dojo-attach-point="openNode">展开阅读<div class="ripple-wrapper"></div></a>
+            <div class="article-opts-wrap pull-right">
+                <ul class="article-opts-list nav nav-pills" data-dojo-attach-point="linksNode">
+                    <li class="link-item withripple" data-dojo-attach-point="favouriteLinkNode" title="${nls.favourite}">
+                        <a> <i class="${fontAwesome.star}"></i>
+                            <span class="num" data-dojo-attach-point="favouriteCountNode">${article.favouriteCount}</span>
+                        </a>
+                    </li>
+                    <li class="link-item withripple" data-dojo-attach-point="reshareLinkNode"  title="${nls.reshare}">
+                        <a> <i class="${fontAwesome.retweet}"></i>
+                            <span class="num" data-dojo-attach-point="reshareCountNode" >${article.reshareCount}</span>
+                        </a>
+                    </li>
+                    <li class="link-item last-item withripple" data-dojo-attach-point="likeLinkNode"  title="${nls.like}">
+                        <a>
+                            <i class="${fontAwesome.thumbUp}"></i>
+                            <span class="num" data-dojo-attach-point="likeCountNode" >${article.likeCount}</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="article-opts-wrap">
-        <ul class="article-opts-list nav nav-pills nav-justified" data-dojo-attach-point="linksNode">
-            <li class="link-item withripple" data-dojo-attach-point="favouriteLinkNode" title="${nls.favourite}">
-                <a> <i class="${fontAwesome.star}"></i>
-                    <span class="num" data-dojo-attach-point="favouriteCountNode">${article.favouriteCount}</span>
-                </a>
-            </li>
-            <li class="link-item withripple" data-dojo-attach-point="reshareLinkNode"  title="${nls.reshare}">
-                <a> <i class="${fontAwesome.retweet}"></i>
-                    <span class="num" data-dojo-attach-point="reshareCountNode" >${article.reshareCount}</span>
-                </a>
-            </li>
-            <li class="link-item withripple" data-dojo-attach-point="commentLinkNode"  title="${nls.comment}">
+        <div class="media commentLike">
+            <div class="media-left">
                 <a>
-                    <i class="${fontAwesome.comment}"></i>
-                    <span class="num" data-dojo-attach-point="commentCountNode"  >${article.commentCount}</span>
+                    <img src="${article.avatar}" alt="${article.username}" class="media-object article-avartar" />
                 </a>
-                <span class="arrow">
-                    <span class="W-arrow-bor">
-                        <i class="s-line1"></i> <em class="s-bg1-br"></em>
-                    </span>
-                </span>
-            </li>
-            <li class="link-item last-item withripple" data-dojo-attach-point="likeLinkNode"  title="${nls.like}">
-                <a>
-                    <i class="${fontAwesome.thumbUp}"></i>
-                    <span class="num" data-dojo-attach-point="likeCountNode" >${article.likeCount}</span>
-                </a>
-            </li>
-        </ul>
-        <div class="comments-wrap s-bg1 s-line1 panel-body media  ${hideClass}" data-dojo-attach-point="commentsWrapNode">
-            <div class="media-left post-comment-avatar-wrap">
-                <a><img src="${postAvatar}" class="post-comment-avatar"></a>
             </div>
-            <div class="media-body" data-dojo-attach-point="commentsListNode"></div>
+            <div class="media-body">
+                <a class="username">${article.username}</a>
+                <span class="content">精彩评论精彩评论精彩评论精彩评论</span>
+                <span class="article-time" style="display:block">3h</span>
+            </div>
+        </div>
+        <div class="comment-item" data-dojo-attach-point="commentLinkNode"  title="${nls.comment}">
+            <a class="link-item withripple "  title="${nls.comment}">
+                <i class="${fontAwesome.comment}"></i>
+                <span class="num" data-dojo-attach-point="commentCountNode"  >${article.commentCount}</span>
+            </a>
+            <div class="inset expand" data-dojo-attach-point="publishNode">
+                <input class="post-input input" placeholder="来说点啥吧？" data-dojo-attach-point="inputNode"></input><ul class="post-actions list-inline"><li title="表情"><i class="fa fa-smile-o"></i></li><li title="发布" class="pull-right postLi"><a class="btn btn-primary btn-sm disabled">发布</a></li></ul>
+            </div>
         </div>
     </div>
+</div>
 </section>

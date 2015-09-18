@@ -16,15 +16,67 @@
 .home .article:first-child {
   width: 880px;
 }
-/* line 37, sass/app.scss */
-.home .article-opts-list .link-item > a {
-  padding: 0;
+/* line 39, sass/app.scss */
+.home .article-opts-wrap .link-item {
+  display: initial;
+  float: left;
 }
 /* line 42, sass/app.scss */
+.home .article-opts-wrap .link-item > a {
+  padding: 0;
+}
+/* line 47, sass/app.scss */
+.home .comment-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: space-between;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+/* line 56, sass/app.scss */
+.home .comment-item .link-item {
+  flex: 1 0 auto;
+  height: 40px;
+}
+/* line 60, sass/app.scss */
+.home .comment-item .inset {
+  width: 100%;
+}
+/* line 63, sass/app.scss */
+.home .comment-item .post-input {
+  width: 260px;
+  margin-left: 12px;
+}
+/* line 67, sass/app.scss */
 .home .comment-item i, .home .comment-item .num {
   display: inline-block;
 }
-/* line 46, sass/app.scss */
+/* line 71, sass/app.scss */
 .home .post-actions {
+  flex: 1 0 auto;
+  height: 40px;
+  width: 100px;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 79, sass/app.scss */
+.home .post-actions .btn {
+  margin: 0;
+}
+/* line 84, sass/app.scss */
+.home .user-info, .home .reinfo {
+  display: inline-block;
+}
+/* line 91, sass/app.scss */
+.home .commentLike .article-avartar {
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+}
+/* line 96, sass/app.scss */
+.home .commentLike .content, .home .commentLike .username {
   display: inline-block;
 }
